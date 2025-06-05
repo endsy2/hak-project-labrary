@@ -1,0 +1,111 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+/* Container setup */
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Left side: image */
+.left-side {
+    flex: 1;
+    background: url('../image/image copy.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.left-side .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 50px 100px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.left-side .overlay h1 {
+    font-size: 60px; /* HUGE system title */
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Right side: huge form layout */
+.right-side {
+    flex: 1;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.login-form h2 {
+    text-align: center;
+    font-size: 55px; /* BIG admin login title */
+    color: #333;
+    margin-bottom: 60px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.form-group {
+    margin-bottom: 40px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 24px; /* bigger label */
+    color: #444;
+    font-weight: 650;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 24px 28px; /* taller input */
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    font-size: 22px; /* bigger input text */
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #000;
+    outline: none;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 24px; /* big button */
+    background-color: #000;
+    color: #fff;
+    font-size: 26px; /* big button text */
+    border: none;
+    border-radius: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    letter-spacing: 1px;
+}
+
+button[type="submit"]:hover {
+    background-color: #333;
+}

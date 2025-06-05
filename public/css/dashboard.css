@@ -1,0 +1,163 @@
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-image: url('../image/image copy 2.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: #2c3e50;
+}
+
+/* Header Styles */
+.header {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 1rem 0.7rem; /* reduced */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.system-title {
+  font-size: 1.5rem; /* was 2.2rem */
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.logout-form {
+  display: inline-block;
+}
+
+.logout-btn {
+  background-color: #ffffff;
+  color: #2c3e50;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem; /* reduced */
+  font-size: 1rem; /* reduced */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Dashboard Styles */
+.dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 82px);
+  padding: 2rem;
+}
+
+.dashboard-card {
+  background-color: rgba(255, 255, 255, 0.96);
+  padding: 2rem 2.5rem; /* reduced */
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 500px;
+}
+
+.dashboard-title {
+  margin-bottom: 2rem; /* reduced */
+  font-size: 2rem; /* was 2.8rem */
+  color: #050505;
+  font-weight: 700;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; /* slightly reduced */
+}
+
+.action-btn {
+  display: block;
+  width: 100%;
+  max-width: 450px;
+  padding: 1rem; /* reduced */
+  margin: 0 auto;
+  font-size: 1.2rem; /* reduced */
+  font-weight: 600;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-btn {
+  background-color: #2ecc71;
+}
+
+.borrower-btn {
+  background-color: #e74c3c;
+}
+
+.action-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+    gap: 0.8rem;
+  }
+
+  .dashboard-card {
+    padding: 1.8rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .action-btn {
+    font-size: 1.1rem;
+    padding: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-card {
+    padding: 1.5rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.6rem;
+  }
+
+  .action-btn {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  .logout-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
