@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Information - Library Management System</title>
     <link rel="stylesheet" href="{{ asset('css/bookinginformation.css') }}">
     <!-- Add CSRF Token for AJAX requests -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
@@ -245,7 +248,7 @@
 
             // Form validation
             function validateForm() {
-                if (!$('#bookId').val() || !$('#title').val() || !$('#author').val() || 
+                if (!$('#bookId').val() || !$('#title').val() || !$('#author').val() ||
                     !$('#year').val() || !$('#price').val() || !$('#status').val()) {
                     alert('Please fill in all fields!');
                     return false;
@@ -265,4 +268,5 @@
         });
     </script>
 </body>
+
 </html>

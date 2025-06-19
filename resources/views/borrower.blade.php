@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Borrower Information</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="{{ asset('css/borrower.css') }}" />
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
@@ -121,7 +124,7 @@
                     </thead>
                     <tbody>
                         @forelse ($borrowers as $borrower)
-                        <tr 
+                        <tr
                             data-id="{{ $borrower->id }}"
                             data-member_id="{{ $borrower->member_id }}"
                             data-first_name="{{ $borrower->first_name }}"
@@ -133,8 +136,7 @@
                             data-book_status="{{ $borrower->book_status }}"
                             data-borrow_date="{{ $borrower->borrow_date }}"
                             data-due_date="{{ $borrower->due_date }}"
-                            data-return_date="{{ $borrower->return_date }}"
-                        >
+                            data-return_date="{{ $borrower->return_date }}">
                             <td>{{ $borrower->member_id }}</td>
                             <td>{{ $borrower->first_name }}</td>
                             <td>{{ $borrower->last_name }}</td>
@@ -148,7 +150,9 @@
                             <td>{{ $borrower->return_date }}</td>
                         </tr>
                         @empty
-                        <tr><td colspan="11" style="text-align:center;">No borrowers found.</td></tr>
+                        <tr>
+                            <td colspan="11" style="text-align:center;">No borrowers found.</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -156,125 +160,126 @@
         </div>
     </div>
 
-<script>
-    const form = document.getElementById('borrower-form');
-    const btnAdd = document.getElementById('btn-add');
-    const btnUpdate = document.getElementById('btn-update');
-    const btnDelete = document.getElementById('btn-delete');
-    const btnCancel = document.getElementById('btn-cancel');
+    <script>
+        const form = document.getElementById('borrower-form');
+        const btnAdd = document.getElementById('btn-add');
+        const btnUpdate = document.getElementById('btn-update');
+        const btnDelete = document.getElementById('btn-delete');
+        const btnCancel = document.getElementById('btn-cancel');
 
-    const borrowerId = document.getElementById('borrower_id');
-    const memberId = document.getElementById('member_id');
-    const firstName = document.getElementById('first_name');
-    const lastName = document.getElementById('last_name');
-    const address = document.getElementById('address');
-    const bookId = document.getElementById('book_id');
-    const mobilePhone = document.getElementById('mobile_phone');
-    const memberType = document.getElementById('member_type');
-    const bookStatus = document.getElementById('book_status');
-    const borrowDate = document.getElementById('borrow_date');
-    const dueDate = document.getElementById('due_date');
-    const returnDate = document.getElementById('return_date');
+        const borrowerId = document.getElementById('borrower_id');
+        const memberId = document.getElementById('member_id');
+        const firstName = document.getElementById('first_name');
+        const lastName = document.getElementById('last_name');
+        const address = document.getElementById('address');
+        const bookId = document.getElementById('book_id');
+        const mobilePhone = document.getElementById('mobile_phone');
+        const memberType = document.getElementById('member_type');
+        const bookStatus = document.getElementById('book_status');
+        const borrowDate = document.getElementById('borrow_date');
+        const dueDate = document.getElementById('due_date');
+        const returnDate = document.getElementById('return_date');
 
-    function resetForm() {
-        borrowerId.value = '';
-        memberId.value = '';
-        firstName.value = '';
-        lastName.value = '';
-        address.value = '';
-        bookId.value = '';
-        mobilePhone.value = '';
-        memberType.value = '';
-        bookStatus.value = '';
-        borrowDate.value = '';
-        dueDate.value = '';
-        returnDate.value = '';
+        function resetForm() {
+            borrowerId.value = '';
+            memberId.value = '';
+            firstName.value = '';
+            lastName.value = '';
+            address.value = '';
+            bookId.value = '';
+            mobilePhone.value = '';
+            memberType.value = '';
+            bookStatus.value = '';
+            borrowDate.value = '';
+            dueDate.value = '';
+            returnDate.value = '';
 
-        form.action = "{{ route('borrowers.store') }}";
-        form.method = "POST";
-
-        btnAdd.style.display = 'inline-block';
-        btnUpdate.style.display = 'none';
-        btnDelete.style.display = 'none';
-        btnCancel.style.display = 'none';
-
-        const methodInput = form.querySelector('input[name="_method"]');
-        if(methodInput) methodInput.remove();
-    }
-
-    document.querySelectorAll('#borrower-table tbody tr[data-id]').forEach(row => {
-        row.addEventListener('click', () => {
-            borrowerId.value = row.dataset.id;
-            memberId.value = row.dataset.member_id;
-            firstName.value = row.dataset.first_name;
-            lastName.value = row.dataset.last_name;
-            address.value = row.dataset.address;
-            bookId.value = row.dataset.book_id;
-            mobilePhone.value = row.dataset.mobile_phone;
-            memberType.value = row.dataset.member_type;
-            bookStatus.value = row.dataset.book_status;
-            borrowDate.value = row.dataset.borrow_date;
-            dueDate.value = row.dataset.due_date;
-            returnDate.value = row.dataset.return_date;
-
-            form.action = `/borrowers/${borrowerId.value}`;
+            form.action = "{{ route('borrowers.store') }}";
             form.method = "POST";
 
-            let methodInput = form.querySelector('input[name="_method"]');
-            if(!methodInput){
-                methodInput = document.createElement('input');
-                methodInput.type = 'hidden';
-                methodInput.name = '_method';
-                form.appendChild(methodInput);
-            }
-            methodInput.value = 'PUT';
+            btnAdd.style.display = 'inline-block';
+            btnUpdate.style.display = 'none';
+            btnDelete.style.display = 'none';
+            btnCancel.style.display = 'none';
 
-            btnAdd.style.display = 'none';
-            btnUpdate.style.display = 'inline-block';
-            btnDelete.style.display = 'inline-block';
-            btnCancel.style.display = 'inline-block';
-        });
-    });
-
-    btnCancel.addEventListener('click', () => {
-        resetForm();
-    });
-
-    btnUpdate.addEventListener('click', () => {
-        form.submit();
-    });
-
-    btnDelete.addEventListener('click', () => {
-        if (!confirm('Are you sure you want to delete this borrower?')) return;
-
-        const id = borrowerId.value;
-        if (!id) {
-            alert('No borrower selected for deletion.');
-            return;
+            const methodInput = form.querySelector('input[name="_method"]');
+            if (methodInput) methodInput.remove();
         }
 
-        const deleteForm = document.createElement('form');
-        deleteForm.method = 'POST';
-        deleteForm.action = `/borrowers/${id}`;
-        deleteForm.style.display = 'none';
+        document.querySelectorAll('#borrower-table tbody tr[data-id]').forEach(row => {
+            row.addEventListener('click', () => {
+                borrowerId.value = row.dataset.id;
+                memberId.value = row.dataset.member_id;
+                firstName.value = row.dataset.first_name;
+                lastName.value = row.dataset.last_name;
+                address.value = row.dataset.address;
+                bookId.value = row.dataset.book_id;
+                mobilePhone.value = row.dataset.mobile_phone;
+                memberType.value = row.dataset.member_type;
+                bookStatus.value = row.dataset.book_status;
+                borrowDate.value = row.dataset.borrow_date;
+                dueDate.value = row.dataset.due_date;
+                returnDate.value = row.dataset.return_date;
 
-        const csrfInput = document.createElement('input');
-        csrfInput.type = 'hidden';
-        csrfInput.name = '_token';
-        csrfInput.value = '{{ csrf_token() }}';
-        deleteForm.appendChild(csrfInput);
+                form.action = `/borrowers/${borrowerId.value}`;
+                form.method = "POST";
 
-        const methodInput = document.createElement('input');
-        methodInput.type = 'hidden';
-        methodInput.name = '_method';
-        methodInput.value = 'DELETE';
-        deleteForm.appendChild(methodInput);
+                let methodInput = form.querySelector('input[name="_method"]');
+                if (!methodInput) {
+                    methodInput = document.createElement('input');
+                    methodInput.type = 'hidden';
+                    methodInput.name = '_method';
+                    form.appendChild(methodInput);
+                }
+                methodInput.value = 'PUT';
 
-        document.body.appendChild(deleteForm);
-        deleteForm.submit();
-    });
+                btnAdd.style.display = 'none';
+                btnUpdate.style.display = 'inline-block';
+                btnDelete.style.display = 'inline-block';
+                btnCancel.style.display = 'inline-block';
+            });
+        });
 
-    resetForm();
-</script>
+        btnCancel.addEventListener('click', () => {
+            resetForm();
+        });
+
+        btnUpdate.addEventListener('click', () => {
+            form.submit();
+        });
+
+        btnDelete.addEventListener('click', () => {
+            if (!confirm('Are you sure you want to delete this borrower?')) return;
+
+            const id = borrowerId.value;
+            if (!id) {
+                alert('No borrower selected for deletion.');
+                return;
+            }
+
+            const deleteForm = document.createElement('form');
+            deleteForm.method = 'POST';
+            deleteForm.action = `/borrowers/${id}`;
+            deleteForm.style.display = 'none';
+
+            const csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = '_token';
+            csrfInput.value = '{{ csrf_token() }}';
+            deleteForm.appendChild(csrfInput);
+
+            const methodInput = document.createElement('input');
+            methodInput.type = 'hidden';
+            methodInput.name = '_method';
+            methodInput.value = 'DELETE';
+            deleteForm.appendChild(methodInput);
+
+            document.body.appendChild(deleteForm);
+            deleteForm.submit();
+        });
+
+        resetForm();
+    </script>
 </body>
+
 </html>
